@@ -5,24 +5,25 @@
  */
 package tools;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import shapes.PolyLine;
-import shapes.Shape;
+import shapes.Queue;
 
 /**
  *
  * @author user
  */
 public class PolyLineButton extends Button {
-    
-    PolyLine polyLine = new PolyLine();
-    
-    public PolyLineButton(String name) {
-        super(name);
+
+    public PolyLineButton(Queue queue) {
+        super("PolyLine");
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                queue.addShape(new PolyLine());
+            }
+        });
     }
-    
-    @Override
-    public Shape getShape(){
-        return polyLine;
-    }
-    
+
 }

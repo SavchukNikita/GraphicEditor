@@ -5,25 +5,25 @@
  */
 package tools;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import shapes.Queue;
 import shapes.Rectangle;
-import shapes.Shape;
 
 /**
  *
  * @author user
  */
 public class RectButton extends Button {
-    
-    Rectangle rect = new Rectangle();
-    
-    public RectButton(String name) {
-        super(name);
+
+    public RectButton(Queue queue) {
+        super("Rectangle");
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                queue.addShape(new Rectangle());
+            }
+        });
     }
-    
-    @Override
-    public Shape getShape(){
-        return rect;
-    }
-    
+
 }

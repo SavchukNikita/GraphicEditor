@@ -7,14 +7,21 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.util.List;
 
 /**
  *
  * @author user
  */
 public abstract class Shape {
-    public void addCoordinate(int x, int y){}
-    public void putCoordinate(int x, int y){}
-    public void drawShape(Graphics g){}
-    public void setColor(Color currentColor){}
+    abstract public void addCoordinate(Point2D point);
+    abstract public void putCoordinate(Point2D point);
+    abstract public void drawShape(Graphics g);
+    abstract public void setColor(Color currentColor);
+    abstract public Color getColor();
+    abstract public String getType();
+    abstract public List<Point2D> getPoints();
+    abstract public void setCoordinates(List<Point2D> point);
 }

@@ -5,22 +5,24 @@
  */
 package tools;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import shapes.Ellipse;
-import shapes.Shape;
+import shapes.Queue;
 
 /**
  *
  * @author user
  */
 public class EllipseButton extends Button {
-    
-    Ellipse ellipse = new Ellipse();
-            
-    public EllipseButton(String name) {
-        super(name);
-    }
-    @Override
-    public Shape getShape(){
-        return ellipse;
+
+    public EllipseButton(Queue queue) {
+        super("Ellipse");
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                queue.addShape(new Ellipse());
+            }
+        });
     }
 }

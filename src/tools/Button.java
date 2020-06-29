@@ -13,14 +13,8 @@ import shapes.Shape;
  * @author user
  */
 public abstract class Button extends JButton {
-    Shape shape;
-    String name;
-    
-    Button(String name){
+
+    Button(String name) {
         super(name);
-    }
-    
-    public Shape getShape(){
-        return shape;
     }
 }

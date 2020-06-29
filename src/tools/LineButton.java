@@ -5,24 +5,24 @@
  */
 package tools;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import shapes.Line;
-import shapes.Shape;
+import shapes.Queue;
 
 /**
  *
  * @author user
  */
 public class LineButton extends Button {
-    
-    Line line = new Line();
-    
-    
-    public LineButton(String name) {
-        super(name);
-    }
-    
-    @Override
-    public Shape getShape(){
-        return line;
+
+    public LineButton(Queue queue) {
+        super("Line");
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                queue.addShape(new Line());
+            }
+        });
     }
 }

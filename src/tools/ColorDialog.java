@@ -13,12 +13,12 @@ import javax.swing.JFrame;
  *
  * @author user
  */
-public class ColorDialog extends JDialog
-    {
-      public ColorDialog(JFrame owner, String title, JColorChooser colorChooser)
-      {
-        super(owner, title, true);
-        add(colorChooser);
-        setSize(450, 400);
-      }
+public class ColorDialog extends JDialog {
+  private static final long serialVersionUID = 1L;
+
+  public ColorDialog(JFrame owner, String title, JColorChooser colorChooser) {
+    super(owner, title, true);
+    add(colorChooser);
+    setSize(450, 400);
+  }
 }

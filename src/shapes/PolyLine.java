@@ -7,28 +7,42 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author user
  */
 public class PolyLine extends Shape {
-    ArrayList<Integer> x = new ArrayList<>();
-    ArrayList<Integer> y = new ArrayList<>();
+    ArrayList<Integer> x;
+    ArrayList<Integer> y;
     int lastX;
     int lastY;
     Color currentColor;
+    List<Point2D> coordinates;
+    private int[] x1, y1;
+    
+    public PolyLine() {
+        coordinates = new ArrayList<Point2D>();
+        x = new ArrayList<>();
+        y = new ArrayList<>();
+
+    }
     
     @Override
-    public void addCoordinate(int x, int y){
-        this.x.add(x);
-        this.y.add(y);
+    public void addCoordinate(Point2D point){
+        coordinates.add(point);
+        x.add((int) point.getX());
+        y.add((int) point.getY());
     }
     @Override
-    public void putCoordinate(int x, int y){
-        lastX = x;
-        lastY = y;
+    public void putCoordinate(Point2D point){
+        this.coordinates.set(this.coordinates.size() - 1, point);
+        this.x.set(this.x.size() - 1, (int) point.getX());
+        this.y.set(this.y.size() - 1, (int) point.getY());
     }
     
     @Override
@@ -39,12 +53,34 @@ public class PolyLine extends Shape {
     @Override
     public void drawShape(Graphics g){
         g.setColor(currentColor);
-        for(int i = 1; i<x.size(); i++){
-            g.drawLine(x.get(i-1), y.get(i-1), x.get(i), y.get(i));
+        x1 = new int[x.size()];
+        y1 = new int[x.size()];
+        for (int i = 0; i < x.size(); i++) {
+            x1[i] = x.get(i);
+            y1[i] = y.get(i);
         }
-        
-        if(!x.isEmpty()){
-            g.drawLine(x.get(x.size()-1), y.get(y.size()-1), lastX, lastY);
+        g.drawPolyline(x1, y1, x.size());
+    }
+
+    @Override
+    public Color getColor() {
+        return currentColor;
+    }
+
+    @Override
+    public String getType() {
+        return ("Polyline");
+    }
+
+    @Override
+    public List<Point2D> getPoints() {
+         return coordinates; 
+    }
+
+    @Override
+    public void setCoordinates(List<Point2D> point) {
+        for (int i = 0; i<point.size(); i++){
+            addCoordinate(point.get(i));
         }
     }
 }
